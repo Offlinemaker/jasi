@@ -1,0 +1,15 @@
+style table, th, td { border: 1px solid black;}
+
+-var i = 0
+div
+  each item in term
+    - i++
+    h2 Zeichen #{i}
+    h3 Formgruppe #{item.fgr}
+    h4 Formgebend #{item.fg}
+    h4 Rest #{item.r}
+
+hr
+
+div!= table
+
