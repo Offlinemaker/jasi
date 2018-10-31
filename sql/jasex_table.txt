@@ -1,0 +1,30 @@
+CREATE TABLE wort(
+wortid int,
+lesung text,
+bedeutung text,
+primary key(wortid)
+);
+
+CREATE TABLE zeichen(
+kanji text,
+formgruppe tinyint,
+formgebend tinyint,
+restgruppe tinyint,
+unternummer int,
+primary key(formgruppe, formgebend, restgruppe, unternummer)
+);
+
+CREATE TABLE woerterbuch(
+wortid int,
+
+fgr tinyint,
+fg tinyint,
+rg tinyint,
+un int,
+
+stelle tinyint,
+
+FOREIGN KEY (fgr,fg,rg,un) references zeichen(formgruppe, formgebend, restgruppe, unternummer),
+
+PRIMARY KEY (wortid, fgr, fg, rg, un, stelle)
+);

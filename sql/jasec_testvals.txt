@@ -1,0 +1,23 @@
+INSERT INTO wort(wortid,lesung, bedeutung) values (1,"einzelzeichen","TEST eines Einzelnen Zeichens");
+INSERT INTO wort(wortid,lesung, bedeutung) values (2,"doppelzeichen","TEST eines Doppelzeichens");
+INSERT INTO wort(wortid,lesung, bedeutung) values (3,"anderes doppelzeichen","TEST");
+INSERT INTO wort(wortid,lesung, bedeutung) values (4,"test","TEST");
+INSERT INTO wort(wortid,lesung, bedeutung) values (5,"test","TEST");
+
+INSERT INTO zeichen(kanji,formgruppe,formgebend,restgruppe,unternummer) values ("FG NULL 1",0,3,1,1);
+INSERT INTO zeichen(kanji,formgruppe,formgebend,restgruppe,unternummer) values ("FG NULL 2",0,3,1,2);
+INSERT INTO zeichen(kanji,formgruppe,formgebend,restgruppe,unternummer) values ("FG ZWEI 1",2,4,6,1);
+INSERT INTO zeichen(kanji,formgruppe,formgebend,restgruppe,unternummer) values ("FG ZWEI 2",2,4,4,1);
+INSERT INTO zeichen(kanji,formgruppe,formgebend,restgruppe,unternummer) values ("FG ZWEI 3",2,3,9,1);
+
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (1,0,3,1,1,1);
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (2,0,3,1,1,1);
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (2,0,3,1,2,2);
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (3,0,3,1,1,1);
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (3,0,3,1,1,2);
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (4,0,3,1,1,1);
+INSERT INTO woerterbuch(wortid,fgr,fg,rg,un,stelle) values (4,2,4,6,1,2);
+
+select * from wort where wortid=ANY(select wortid from woerterbuch where fgr=0 AND fg=3 AND rg=1 AND stelle=1);
+
+select * from wort where wortid=any(select wortid from woerterbuch where fgr=0 AND stelle=1)AND wortid=any(select wortid from woerterbuch where fgr=0 AND stelle=2);
