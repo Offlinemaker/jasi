@@ -28,3 +28,4 @@ FOREIGN KEY (fgr,fg,rg,un) references zeichen(formgruppe, formgebend, restgruppe
 
 PRIMARY KEY (wortid, fgr, fg, rg, un, stelle)
 );
+///
